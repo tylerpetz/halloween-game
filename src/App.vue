@@ -6,7 +6,7 @@ const toggleDark = useToggle(isDark)
 </script>
 
 <template>
-  <main class="text-center">
+  <main class="text-center flex flex-col items-center justify-center h-screen w-screen overflow-hidden">
     <router-view />
     <button type="button" @click="toggleDark" class="fixed bottom-2 right-2 text-gray-800 dark:text-gray-200">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
