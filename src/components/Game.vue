@@ -42,7 +42,7 @@ function changeValue(e) {
   <div v-if="$route.path === '/' || $route.path === ''">
     Nothing to see here.
   </div>
-  <h1 class="text-3xl bg-yellow-300 text-black h-96 shadow-lg w-96 flex justify-center items-center p-6" v-if="displayMessage">{{ displayMessage }}</h1>
+  <h1 class="text-3xl bg-yellow-300 text-black h-96 shadow-lg w-96 flex justify-center items-center p-6" v-else-if="displayMessage">{{ displayMessage }}</h1>
   <form class="flex flex-col items-center" @submit.prevent="checkForm($route.path, code)" v-else>
     <div class="block relative bg-gray-700 border-gray-200 shadow-2xl rounded-lg border-4 p-10 w-96">
       <input v-model="code" type="text" required  pattern="[0-9]{4}" class="flex bg-transparent text-black z-10 relative h-16 outline-none max-w-full" style="font-size: 36px; letter-spacing: 60px; left: 18px;" @keyup="changeValue" />
