@@ -31,7 +31,6 @@ function checkForm(path, check) {
 }
 
 function changeValue(e) {
-  // console.log(e, code.value.length, e.target.value.length)
   if (e.target.value.length === 4) {
     e.target.blur()
   }
@@ -42,17 +41,45 @@ function changeValue(e) {
   <div v-if="$route.path === '/' || $route.path === ''">
     Nothing to see here.
   </div>
-  <h1 class="text-3xl bg-yellow-300 text-black h-96 shadow-lg w-96 flex justify-center items-center p-6" v-else-if="displayMessage">{{ displayMessage }}</h1>
-  <form class="flex flex-col items-center" @submit.prevent="checkForm($route.path, code)" v-else>
-    <div class="block relative bg-gray-700 border-gray-200 shadow-2xl rounded-lg border-4 p-10 w-96">
-      <input v-model="code" type="text" required  pattern="[0-9]{4}" class="flex bg-transparent text-black z-10 relative h-16 outline-none max-w-full" style="font-size: 36px; letter-spacing: 60px; left: 18px;" @keyup="changeValue" />
-      <div class="pointer-events-none absolute inset-0 flex items-center p-10 space-x-2">
-        <span class="w-1/4 h-16 bg-white"></span>
-        <span class="w-1/4 h-16 bg-white"></span>
-        <span class="w-1/4 h-16 bg-white"></span>
-        <span class="w-1/4 h-16 bg-white"></span>
+  <template v-else>
+    <transition
+      enter-active-class="transition-all duration-1000 ease-out-quad"
+      leave-active-class="transition-all duration-1000 ease-in-quad"
+      enter-from-class="opacity-0"
+      enter-to-class="opacity-100"
+      leave-from-class="opacity-100"
+      leave-to-class="opacity-0"
+    >
+      <h1 class="text-3xl bg-yellow-300 text-black h-96 shadow-lg w-96 flex justify-center items-center p-6 font-scary leading-10" v-if="displayMessage">
+        {{ displayMessage }}
+      </h1>
+    </transition>
+    <form class="flex flex-col items-center" @submit.prevent="checkForm($route.path, code)" v-if="!displayMessage">
+      <div class="block relative bg-gray-700 border-gray-200 shadow-2xl rounded-lg border-4 p-10 w-96">
+        <div class="security-code-wrap flex items-center justify-center">
+          <label for="code-field">
+            <ul class="justify-center m-0 p-0 flex">
+              <li class="block list-none w-10 h-10 text-base leading-10 bg-white m-1 text-black" v-for="(item, index) in 4" :key="index">
+                {{code[index] || '-'}}
+              </li>
+            </ul>
+          </label>
+          <input ref="input" class="input-code" v-model="code" id="code-field" name="code-field" type="tel" maxlength="4" autocorrect="off" autocomplete="off" autocapitalize="off">
+        </div>
       </div>
-    </div>
-    <button type="submit" class="bg-red-500 hover:bg-red-400 border-b-4 border-red-700 hover:border-red-500 text-white text-center py-2 px-4 rounded font-bold text-2xl mt-6">UNLOCK</button>
-  </form>
+      <button 
+        type="submit"
+        :disabled="code.length < 4"
+        :class="code.length === 4 ? 'bg-yellow-600 hover:bg-yellow-500 border-yellow-700 hover:border-yellow-600' : 'bg-gray-400 border-gray-500 pointer-events-none'" 
+        class="border-b-4 text-white text-center py-3 px-5 rounded font-bold text-3xl mt-6 relative z-20 shadow-sm transition-colors">UNLOCK</button>
+    </form>
+  </template>
 </template>
+
+<style scoped lang="scss">
+.input-code {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+}
+</style>

@@ -8,7 +8,11 @@ module.exports = {
   },
   darkMode: 'class',
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        scary: ['"Permanent Marker"', 'cursive']
+      }
+    },
   },
   variants: {
     extend: {},
