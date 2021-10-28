@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Game from '/src/components/Game.vue'
 
-const locations = ['legacy', 'ridge', 'billing', 'lobby', 'vista', 'summit']
+const locations = ['library', 'study', 'ballroom', 'lounge', 'hall', 'conservatory']
 const locationRoutes = locations.map(location => ({
   path: `/${location}`,
   name: location,
@@ -16,7 +16,7 @@ const routes = [
   },
   ...locationRoutes,
 ]
-console.log(routes)
+
 const router = createRouter({
   history: createWebHistory(),
   routes,

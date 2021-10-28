@@ -5,12 +5,12 @@ let code = ref('')
 let displayMessage = ref('')
 
 const locations = ref({
-  legacy: '8217',
-  ridge: '9534',
-  billing: '4162',
-  lobby: '6829',
-  vista: '9425',
-  summit: '7582'
+  library: '8217', // legacy
+  study: '9534', // ridge
+  ballroom: '4162', // billing
+  lounge: '6829', // lobby
+  hall: '9425', // vista
+  conservatory: '7582' // summit
 })
 
 const messages = ref({
