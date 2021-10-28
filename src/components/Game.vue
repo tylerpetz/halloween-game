@@ -29,12 +29,6 @@ function checkForm(path, check) {
     displayMessage.value = 'Wrong code, try again.'
   }
 }
-
-function changeValue(e) {
-  if (e.target.value.length === 4) {
-    e.target.blur()
-  }
-}
 </script>
 
 <template>
