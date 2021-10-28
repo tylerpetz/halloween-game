@@ -26,7 +26,7 @@ function checkForm(path, check) {
   if (messages.value[check] && locations.value[path.substring(1)] === check) {
     displayMessage.value = messages.value[check]
   } else {
-    displayMessage.value = 'You look, but don’t see anything here. Maybe the next clue will yield some results.'
+    displayMessage.value = 'Wrong code, try again.'
   }
 }
 
