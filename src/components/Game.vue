@@ -10,7 +10,13 @@ const locations = ref({
   ballroom: '4162', // billing
   lounge: '6829', // lobby
   hall: '9425', // vista
-  conservatory: '7582' // summit
+  conservatory: '7582', // summit
+  'library/': '8217', // legacy
+  'study/': '9534', // ridge
+  'ballroom/': '4162', // billing
+  'lounge/': '6829', // lobby
+  'hall/': '9425', // vista
+  'conservatory/': '7582' // summit
 })
 
 const messages = ref({
@@ -23,7 +29,7 @@ const messages = ref({
 })
 
 function checkForm(path, check) {
-  if (messages.value[check] && locations.value[path].includes(check)) {
+  if (messages.value[check] && locations.value[path.substring(1)] === check) {
     displayMessage.value = messages.value[check]
   } else {
     displayMessage.value = 'Wrong code, try again.'
