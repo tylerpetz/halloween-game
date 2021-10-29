@@ -23,7 +23,7 @@ const messages = ref({
 })
 
 function checkForm(path, check) {
-  if (messages.value[check] && locations.value[path.substring(1)] === check) {
+  if (messages.value[check] && locations.value[path].includes(check)) {
     displayMessage.value = messages.value[check]
   } else {
     displayMessage.value = 'Wrong code, try again.'
